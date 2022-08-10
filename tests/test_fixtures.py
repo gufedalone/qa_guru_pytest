@@ -21,19 +21,14 @@ def stretched(request):
 def shrinked(request):
     browser.config.window_width = request.param[0]
     browser.config.window_height = request.param[1]
+    time.sleep(1)
     browser.open('https://github.com/')
 
 
 def test_github_desktop(stretched):
-    try:
-        browser.element('a[href="/login"]').click()
-    except AssertionError:
-        pytest.xfail(reason="Mobile resolution")
+    browser.element('a[href="/login"]').click()
 
 
 def test_github_mobile(shrinked):
-    try:
-        browser.element('svg.octicon-three-bars').click()
-        browser.element('a[href="/login"]').click()
-    except AssertionError:
-        pytest.xfail(reason="Desktop resolution")
+    browser.element('svg.octicon-three-bars').click()
+    browser.element('a[href="/login"]').click()
