@@ -2,7 +2,10 @@ import pytest
 from selene.support.shared import browser
 
 
-@pytest.fixture(params=[(1920, 1080), (1600, 900)], ids=["1920x1080", "1600x900"], scope='function')
+@pytest.fixture(params=[(1920, 1080), (1600, 900)],
+                ids=["1920x1080", "1600x900"],
+                scope='function'
+                )
 def stretched(request):
     browser.config.window_width = request.param[0]
     browser.config.window_height = request.param[1]

@@ -4,7 +4,9 @@ from selene.support.shared import browser
 
 
 @pytest.fixture(params=[(1920, 1080), (1600, 900), (828, 1792), (750, 1334)],
-                ids=["1920x1080", "1600x900", "828x1792", "750x1334"], scope='function')
+                ids=["1920x1080", "1600x900", "828x1792", "750x1334"],
+                scope='function'
+                )
 def browser_window_size(request):
     browser.config.window_width = request.param[0]
     browser.config.window_height = request.param[1]
