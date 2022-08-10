@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from selene.support.shared import browser
 
@@ -9,10 +11,14 @@ from selene.support.shared import browser
 def stretched(request):
     browser.config.window_width = request.param[0]
     browser.config.window_height = request.param[1]
+    time.sleep(1)
     browser.open('https://github.com/')
 
 
-@pytest.fixture(params=[(750, 1334), (828, 1792)], ids=["750x1334", "828x1792"], scope='function')
+@pytest.fixture(params=[(750, 1334), (828, 1792)],
+                ids=["750x1334", "828x1792"],
+                scope='function'
+                )
 def shrinked(request):
     browser.config.window_width = request.param[0]
     browser.config.window_height = request.param[1]
